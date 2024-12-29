@@ -4,6 +4,7 @@ namespace App\Http\Actions\Item;
 use App\Models\Character;
 use App\Models\Item;
 use App\Models\EquipDetail;
+use App\Models\Property;
 use App\Http\Services\EquipPropertyService;
 use App\Http\Actions\Action;
 
