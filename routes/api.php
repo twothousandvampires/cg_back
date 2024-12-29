@@ -13,7 +13,4 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::any('/{action?}', ApiController::class);
-Route::any('/move}', function(){
-    echo 6666;
-});
+Route::any('/', ApiController::class);

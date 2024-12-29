@@ -8,13 +8,13 @@ use App\Http\Fabrics\ActionsFabric;
 
 class ApiController
 {
-    public function __invoke($action = false, Request $request): \Illuminate\Http\JsonResponse
+    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
     {
-        if(!$action){
+        if(!$request->action){
             return response()->json('no action', 200);
         }
 
-        $action = ActionsFabric::createAction($action);
+        $action = ActionsFabric::createAction($request->action);
 
         if(!$action){
             return response()->json('wrong action', 200);
