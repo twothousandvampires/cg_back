@@ -294,7 +294,7 @@ class NodeContentService
             }
             $rarity = $this->generateRarity();
 
-            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'item_list.id')
+            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'id')
                    ->where('type', Item::ITEM_TYPE_EQUIP)
                    ->where('rarity', $rarity)
                    ->where('edl.equip_type', '=', Item::EQUIP_CLASS_ACCESSORY)
@@ -308,7 +308,7 @@ class NodeContentService
                 return null;
             }
             $rarity = $this->generateRarity();
-            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'item_List.id')
+            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'id')
                 ->where('type', Item::ITEM_TYPE_EQUIP)
                 ->where('rarity','<=', $rarity)
                 ->where('edl.equip_class', 3)
@@ -322,7 +322,7 @@ class NodeContentService
                 return null;
             }
             $rarity = $this->generateRarity();
-            $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'item_List.id')
+            $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'id')
                 ->where('type', Item::ITEM_TYPE_USED)
                 ->where('rarity','<=', $rarity)
                 ->where('udl.used_type', 3)
