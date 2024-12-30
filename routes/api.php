@@ -13,4 +13,4 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::any('/', ApiController::class);
+Route::post('/', ApiController::class);
