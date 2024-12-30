@@ -14,10 +14,10 @@ class ItemsList extends Model
     ];
 
     static function getRandomGemName($rarity){
-        $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'item_List.id')
+        $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'item_list.id')
             ->where('udl.used_type', 3)
             ->where('rarity','<=', $rarity)
-            ->where('item_List.type', 3)
+            ->where('type', 3)
             ->inRandomOrder()
             ->first();
 
@@ -25,6 +25,7 @@ class ItemsList extends Model
     }
 
     use HasFactory;
+
     protected $connection = 'game_data';
     protected $table = 'item_list';
 

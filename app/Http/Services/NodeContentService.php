@@ -294,7 +294,7 @@ class NodeContentService
             }
             $rarity = $this->generateRarity();
 
-            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'item_List.id')
+            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'item_list.id')
                    ->where('type', Item::ITEM_TYPE_EQUIP)
                    ->where('rarity', $rarity)
                    ->where('edl.equip_type', '=', Item::EQUIP_CLASS_ACCESSORY)
