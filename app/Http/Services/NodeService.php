@@ -57,7 +57,7 @@ class NodeService{
         }
         else if($node->content->content_type === NodeContent::OBJECT_TYPE_BREWPOTION_POST){
             $rnd = mt_rand(1,2);
-            $items = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'id')
+            $items = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'item_list.id')
                 ->where('type', Item::ITEM_TYPE_USED)
                 ->where('udl.used_type', 1)
                 ->inRandomOrder()
@@ -78,7 +78,7 @@ class NodeService{
             }
         }
         else if($node->content->content_type === NodeContent::OBJECT_TYPE_FLYING_SCROLLS){
-            $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'id')
+            $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'item_list.id')
                 ->where('type', Item::ITEM_TYPE_USED)
                 ->where('udl.used_type', 4)
                 ->inRandomOrder()
@@ -97,7 +97,7 @@ class NodeService{
 
         }
         else if($node->content->content_type === NodeContent::OBJECT_TYPE_ABANDONED_FORGE){
-            $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'id')
+            $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'item_list.id')
                 ->where('type', Item::ITEM_TYPE_USED)
                 ->where('udl.used_type', 5)
                 ->inRandomOrder()
