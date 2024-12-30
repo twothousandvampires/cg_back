@@ -55,8 +55,8 @@ class NodeContent extends Model
             return ItemsList::where('rarity', '<=', $rarity)->inRandomOrder()->first()->name;
         }
         else if($type === NodeContent::TREASURE_TYPE_DEAD_BODY){
-            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'id')
-                ->leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'id')
+            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'item_list.id')
+                ->leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'item_list.id')
                 ->where('type', Item::ITEM_TYPE_EQUIP)
                 ->where('rarity', '<=', $rarity)
                 ->whereIn('edl.equip_type', [Item::EQUIP_CLASS_ARMOUR, Item::EQUIP_CLASS_WEAPON])
@@ -72,7 +72,7 @@ class NodeContent extends Model
             return ItemsList::getRandomGemName($rarity);
         }
         else if($type === NodeContent::TREASURE_TYPE_GHOSTLY_MAGE){
-            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'id')
+            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'item_list.id')
                 ->where('type', Item::ITEM_TYPE_EQUIP)
                 ->where('rarity', '<=', $rarity)
                 ->where('edl.equip_class', 2)
@@ -82,7 +82,7 @@ class NodeContent extends Model
             return $item ? $item->name : null;
         }
         else if($type === NodeContent::TREASURE_TYPE_OUTER_LIFE){
-            $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'id')
+            $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'item_list.id')
                 ->where('type', Item::ITEM_TYPE_USED)
                 ->where('rarity', '<=', $rarity)
                 ->where('udl.used_type', 2)
@@ -92,7 +92,7 @@ class NodeContent extends Model
             return $item ? $item->name : null;
         }
         else if($type === NodeContent::TREASURE_TYPE_GHOSTLY_WARRIOR){
-            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'id')
+            $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'item_list.id')
                 ->where('type', Item::ITEM_TYPE_EQUIP)
                 ->where('rarity', '<=', $rarity)
                 ->where('edl.equip_class', 1)
