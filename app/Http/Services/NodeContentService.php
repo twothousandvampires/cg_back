@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Models\enemy;
+use App\Models\Enemy;
 use App\Models\Item;
 use App\Models\ItemsList;
 use App\Models\Node;
@@ -269,7 +269,7 @@ class NodeContentService
         $distance = sqrt(pow($node->x, 2) + pow($node->y, 2));
         $distance = floor($distance/20);
 
-        $group_array = enemy::getEnemyByDistance($type, $distance);
+        $group_array = Enemy::getEnemyByDistance($type, $distance);
         $group = $this->compactGroup($group_array, $distance);
 
         if(random_int(0,100) > 90){
