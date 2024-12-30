@@ -9,6 +9,7 @@ class EquipDetailList extends Model
 {
     use HasFactory;
 
-    protected $table = 'game_data.equip_detail_list';
+    protected $connection = 'game_data';
+    protected $table = 'equip_detail_list';
 
 }

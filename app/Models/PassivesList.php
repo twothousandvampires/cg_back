@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PassivesList extends Model
 {
-    protected $table = 'game_data.passives_list';
+    protected $connection = 'game_data';
+    protected $table = 'passives_list';
 }

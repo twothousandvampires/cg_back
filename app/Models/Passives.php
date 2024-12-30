@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Passives extends Model
 {
-    protected $table = 'game_serve.passives';
+    protected $table = 'passives';
     protected $fillable = ['name', 'char_id', 'exp_cost' , 'potential_increase', 'level'];
     public $timestamps = false;
 

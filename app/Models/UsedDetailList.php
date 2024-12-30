@@ -8,6 +8,7 @@ class UsedDetailList extends Model
 {
 
     use HasFactory;
-    protected $table = 'game_data.used_detail_list';
+    protected $connection = 'game_data';
+    protected $table = 'used_detail_list';
 
 }

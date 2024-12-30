@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SkillList extends Model
 {
-    protected $table = 'game_data.skill_list';
+    protected $connection = 'game_data';
+    protected $table = 'skill_list';
     public $timestamps = false;
 }

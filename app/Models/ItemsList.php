@@ -23,9 +23,10 @@ class ItemsList extends Model
 
         return $item ? $item->name : null;
     }
-    use HasFactory;
 
-    protected $table = 'game_data.item_list';
+    use HasFactory;
+    protected $connection = 'game_data';
+    protected $table = 'item_list';
 
 }
 
