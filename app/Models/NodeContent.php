@@ -57,10 +57,10 @@ class NodeContent extends Model
         else if($type === NodeContent::TREASURE_TYPE_DEAD_BODY){
             $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'item_List.id')
                 ->leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'item_List.id')
-                ->where('item_List.type', Item::ITEM_TYPE_EQUIP)
+                ->where('type', Item::ITEM_TYPE_EQUIP)
                 ->where('rarity', '<=', $rarity)
                 ->whereIn('edl.equip_type', [Item::EQUIP_CLASS_ARMOUR, Item::EQUIP_CLASS_WEAPON])
-                ->orWhere('item_List.type', Item::ITEM_TYPE_USED)
+                ->orWhere('type', Item::ITEM_TYPE_USED)
                 ->where('udl.used_type', 1)
                 ->where('rarity', '<=', $rarity)
                 ->inRandomOrder()
@@ -73,7 +73,7 @@ class NodeContent extends Model
         }
         else if($type === NodeContent::TREASURE_TYPE_GHOSTLY_MAGE){
             $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'item_List.id')
-                ->where('item_List.type', Item::ITEM_TYPE_EQUIP)
+                ->where('type', Item::ITEM_TYPE_EQUIP)
                 ->where('rarity', '<=', $rarity)
                 ->where('edl.equip_class', 2)
                 ->inRandomOrder()
@@ -83,7 +83,7 @@ class NodeContent extends Model
         }
         else if($type === NodeContent::TREASURE_TYPE_OUTER_LIFE){
             $item = ItemsList::leftJoin('game_data.used_detail_list as udl', 'udl.item_list_id', '=' , 'item_List.id')
-                ->where('item_List.type', Item::ITEM_TYPE_USED)
+                ->where('type', Item::ITEM_TYPE_USED)
                 ->where('rarity', '<=', $rarity)
                 ->where('udl.used_type', 2)
                 ->inRandomOrder()
@@ -93,7 +93,7 @@ class NodeContent extends Model
         }
         else if($type === NodeContent::TREASURE_TYPE_GHOSTLY_WARRIOR){
             $item = ItemsList::leftJoin('game_data.equip_detail_list as edl', 'edl.item_list_id', '=' , 'item_List.id')
-                ->where('item_List.type', Item::ITEM_TYPE_EQUIP)
+                ->where('type', Item::ITEM_TYPE_EQUIP)
                 ->where('rarity', '<=', $rarity)
                 ->where('edl.equip_class', 1)
                 ->inRandomOrder()
