@@ -3,7 +3,7 @@ namespace App\Http\Actions\Item;
 
 use App\Models\Character;
 use App\Models\Item;
-use App\Http\Services\itemService;
+use App\Http\Services\ItemService;
 use App\Http\Actions\Action;
 
 class UseItem extends Action
