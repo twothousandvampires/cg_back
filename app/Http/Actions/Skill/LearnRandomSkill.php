@@ -31,13 +31,10 @@ class LearnRandomSkill extends Action
             'item_id' => null,
             'skill_name' => $skill['skill_name'],
             'skill_type' => $skill['skill_type'],
-            'potential_increase' => $skill['potential_increase'],
             'level' => 1
         ]);
 
-        if($skill->potential_increase != null){
-            $character[$skill->potential_increase] += 1;
-        }
+        $character[$skill->potential_increase] += $skill->mastery_cost;
 
         $character->save();
         $used = Item::find($request->used_id);

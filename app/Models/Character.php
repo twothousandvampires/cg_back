@@ -62,6 +62,6 @@ class Character extends Model
     }
     public function getSkillsAttribute(): \Illuminate\Database\Eloquent\Collection
     {
-        return $this->hasMany(Skills::class, 'char_id', 'id')->where('level','!=', 0)->get();
+        return $this->hasMany(Skills::class, 'char_id', 'id')->get();
     }
 }

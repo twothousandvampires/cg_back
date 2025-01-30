@@ -6,10 +6,6 @@ class PassiveService
 {
     public function affect($passive, &$character): void
     {
-        if($passive->potential_increase != null){
-            $character[$passive->potential_increase] += 1;
-        }
-
         foreach($passive->stats as $stat){
             if($stat != null){
                 if($passive->level == 1){

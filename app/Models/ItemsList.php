@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemsList extends Model
 {
+    protected $connection = 'game_data';
+    protected $table = 'item_list';
+    use HasFactory;
     private static array $GEMS_LIST = [
         'learning stone',
         'improving stone',
@@ -23,11 +26,5 @@ class ItemsList extends Model
 
         return $item ? $item->name : null;
     }
-
-    use HasFactory;
-
-    protected $connection = 'game_data';
-    protected $table = 'item_list';
-
 }
 

@@ -21,19 +21,26 @@ class LearnSkill extends Action
 
         $skill = Skills::find($request->skill_id);
         
-        $skill->level ++;
-        $skill->item_id = null;
-        $skill->save();
-
-        if($skill->potential_increase != null){
-            $character[$skill->potential_increase] += 1;
-        }
+        $skill->level = 1;
+        $skill->char_id = $character->id;
+        
+        $character[$skill->potential_increase] += $skill->mastery_cost;
 
         $character->save();
         $used = Item::find($request->used_id);
 
+    
+        Skills::where('item_id', $skill->item_id)->where('id','!=', $skill->id)->delete();
+
+        Skills::whereNotNull('char_id')->where('skill_name', $skill->skill_name)->delete();
+
+        $skill->item_id = null;
+        $skill->save();
+
         $itemService = new ItemService();
         $itemService->useUsed($used);
+
+        $character->refresh();
 
         $this->addData(['char' => $character]);
 

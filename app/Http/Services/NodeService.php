@@ -117,77 +117,28 @@ class NodeService{
         }
         else if($node->content->content_type === NodeContent::OBJECT_TYPE_ALTAR_OF_FORGOTTEN_WARRIOR){
             $rnd = mt_rand(1,3);
+
             if($rnd === 1) $character->max_life ++;
             if($rnd === 2) $character->physical_damage ++;
             if($rnd === 3) $character->energy ++;
 
-            $skill = SkillList::where('skill_type', 'attack')
-                ->where('fp_req', '<=', $character->fight_potential)
-                ->where('sp_req', '<=', $character->sorcery_potential)
-                ->where('tp_req', '<=', $character->trick_potential)
-                ->inRandomOrder()
-                ->first();
-            $player_skills = Skills::where('char_id', $character->id)->pluck('skill_name')->toArray();
-
-            if(in_array($skill->skill_name, $player_skills)){
-                $skill = Skills::where('char_id', $character->id)
-                    ->where('skill_name', $skill->skill_name)
-                    ->first();
-                $skill->level ++;
-                $skill->save();
-                $log->addToLog($skill->skill_name . ' got level');
-            }
-            else{
-                Skills::create([
-                    'char_id' => $character->id,
-                    'level' => 1,
-                    'item_id' => null,
-                    'skill_name' => $skill->skill_name,
-                    'skill_type' => $skill->skill_type,
-                    'potential_increase' => $skill->potential_increase
-                ]);
-                if($skill->potential_increase){
-                    $character[$skill->potential_increase] += 1;
-                }
-                $log->addToLog('you have learned '. $skill->skill_name);
-            }
+            $c = mt_rand(1, 4);
+            $character->combat_mastery += $c;
+            $log->addToLog('you have got '. $c . ' combat mastery points');
 
             $character->save();
         }
         else if($node->content->content_type === NodeContent::OBJECT_TYPE_ALTAR_OF_FORGOTTEN_SORCERER){
             $rnd = mt_rand(1,3);
+
             if($rnd === 1) $character->max_mana ++;
             if($rnd === 2) $character->magic_damage ++;
             if($rnd === 3) $character->resist ++;
 
-            $skill = SkillList::where('skill_type', 'magic')
-                ->where('fp_req', '<=', $character->fight_potential)
-                ->where('sp_req', '<=', $character->sorcery_potential)
-                ->where('tp_req', '<=', $character->trick_potential)
-                ->inRandomOrder()
-                ->first();
-            $player_skills = Skills::where('char_id', $character->id)->pluck('skill_name')->toArray();
+            $c = mt_rand(1, 4);
+            $character->sorcery_mastery += $c;
 
-            if(in_array($skill->skill_name, $player_skills)){
-                $skill = Skills::where('char_id', $character->id)->where('skill_name', $skill->skill_name)->first();
-                $skill->level ++;
-                $skill->save();
-                $log->addToLog($skill->skill_name . ' got level');
-            }
-            else{
-                Skills::create([
-                    'char_id' => $character->id,
-                    'level' => 1,
-                    'item_id' => null,
-                    'skill_name' => $skill->skill_name,
-                    'skill_type' => $skill->skill_type,
-                    'potential_increase' => $skill->potential_increase
-                ]);
-                if($skill->potential_increase){
-                    $character[$skill->potential_increase] += 1;
-                }
-                $log->addToLog('you have learned '. $skill->skill_name);
-            }
+            $log->addToLog('you have got '. $c . ' sorcery mastery points');
 
             $character->save();
         }

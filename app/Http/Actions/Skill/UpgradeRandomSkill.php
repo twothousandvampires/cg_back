@@ -24,6 +24,7 @@ class UpgradeRandomSkill extends Action
             $skill->level ++;
             $skill->save();
             $character = Character::find($request->char_id);
+            $character[$skill->potential_increase] += $skill->mastery_cost;
             $this->addData(['char' => $character]);
 
             return $this->answer;

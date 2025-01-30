@@ -24,27 +24,27 @@ class UnlockPassivesAction extends Action
         $character->save();
 
         $new = PassivesList::inRandomOrder()
-            ->where('fp_req', '<=', $character->fight_potential)
-            ->where('sp_req', '<=', $character->sorcery_potential)
-            ->where('tp_req', '<=', $character->trick_potential)
-            ->whereNotIn('name', $passives)
-            ->limit(3)
-            ->get();
+                ->where('fp_req', '<=', $character->fight_potential)
+                ->where('sp_req', '<=', $character->sorcery_potential)
+                ->where('tp_req', '<=', $character->trick_potential)
+                ->where('enable', 1)
+                ->whereNotIn('name', $passives)
+                ->limit(3)
+                ->get();
 
         foreach ($new as $item){
             Passives::create([
                 'char_id' => $request->char_id,
                 'name' => $item->name,
                 'exp_cost' => $item->exp_cost,
-                'potential_increase' => $item->potential_increase,
             ]);
         }
 
         $this->addData(['passives' => Passives::with('stats')
-        ->where('char_id', $request->char_id)
-        ->where('level', 0)
-        ->get()]
-        );
+                ->where('char_id', $request->char_id)
+                ->where('level', 0)
+                ->get()]
+                );
        
         return $this->answer;
     }

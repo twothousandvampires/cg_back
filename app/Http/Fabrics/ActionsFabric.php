@@ -36,6 +36,9 @@ class ActionsFabric
         'get_item_skills' => 'App\Http\Actions\Skill\GetSkillForItem',
         'upgrade_random_skill' => 'App\Http\Actions\Skill\UpgradeRandomSkill',
         'upgrade_skill' => 'App\Http\Actions\Skill\UpgradeSkill',
+        'upgrade_stat' => 'App\Http\Actions\Character\UpgradeStat',
+        'unlock_skills' => 'App\Http\Actions\Skill\UnlockSkills',
+        'skill' => 'App\Http\Actions\Skill\Skill'
     ];
 
     static public function createAction($action_name)

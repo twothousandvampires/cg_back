@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Passives extends Model
 {
     protected $table = 'passives';
-    protected $fillable = ['name', 'char_id', 'exp_cost' , 'potential_increase', 'level'];
+    protected $fillable = ['name', 'char_id', 'exp_cost', 'level'];
     public $timestamps = false;
 
     public function character(): \Illuminate\Database\Eloquent\Relations\BelongsTo
