@@ -26,6 +26,10 @@ class LearnRandomSkill extends Action
             ->inRandomOrder()
             ->first();
 
+        if(!$skill){
+            $this->setUnsuccess('no skill');
+            return $this->answer;
+        }
         Skills::create([
             'char_id' => $character->id,
             'item_id' => null,
