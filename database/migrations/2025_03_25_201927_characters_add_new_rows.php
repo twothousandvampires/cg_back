@@ -13,9 +13,9 @@ return new class extends Migration
     {
         
         Schema::table('characters', function (Blueprint $table) {
-            $table->integer('combat_mastery');
-            $table->integer('sorcery_mastery');
-            $table->integer('movement_mastery');
+            $table->integer('combat_mastery')->default(0);
+            $table->integer('sorcery_mastery')->default(0);;
+            $table->integer('movement_mastery')->default(0);;
         });
     }
 
