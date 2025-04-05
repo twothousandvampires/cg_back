@@ -24,6 +24,18 @@ class MoveAction extends Action
         }
 
         $new_node = Node::getNodeByCoord($request->x, $request->y, $request->char_id);
+        $prev_node = Node::getNodeByCoord($character->x, $character->y, $request->char_id);
+
+        if(!in_array($prev_node->id, [$new_node->w_link, $new_node->e_link, $new_node->s_link, $new_node->n_link])
+        && !in_array($new_node->id, [$prev_node->w_link, $prev_node->e_link, $prev_node->s_link, $prev_node->n_link])
+        && !$new_node->travelled)
+        {
+            $nodes = $nodeService->generateNodes($character);
+            $this->setUnsuccess('cannot move');
+            $this->addData(['char' => $character, 'nodes' => $nodes]);
+            return $this->answer;
+        }
+
 
         $character->prev_x = $character->x;
         $character->prev_y = $character->y;

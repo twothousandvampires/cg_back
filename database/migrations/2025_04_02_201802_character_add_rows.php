@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('characters', function (Blueprint $table) {
-            $table->integer('combat_mastery')->default(0)->change();
-            $table->integer('sorcery_mastery')->default(0)->change();
-            $table->integer('movement_mastery')->default(0)->change();
+            $table->string('stance')->default('combat');
+            $table->integer('combat_stance_value')->default(4);
+            $table->integer('sorcery_stance_value')->default(2);
         });
     }
 

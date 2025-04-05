@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        
-        Schema::table('characters', function (Blueprint $table) {
-            $table->integer('combat_mastery')->default(0);
-            $table->integer('sorcery_mastery')->default(0);;
-            $table->integer('movement_mastery')->default(0);;
+        Schema::table('world.nodes', function (Blueprint $table) {
+            $table->integer('w_link')->nullable()->change();
+            $table->integer('e_link')->nullable()->change();
+            $table->integer('n_link')->nullable()->change();
+            $table->integer('s_link')->nullable()->change();
         });
     }
 

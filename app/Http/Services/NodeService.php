@@ -143,18 +143,7 @@ class NodeService{
             $character->save();
         }
     }
-    public function torch($character){
-
-        $node = Node::where('char_id',$character->id)
-                        ->where('x',$character->x)
-                        ->where('y',$character->y)
-                        ->first();
-
-        $node->light = 1;
-        $node->save();
-
-    }
-
+   
     public function checkWay($x, $y, $parent_id, $arr){
 
       $n_node = $this->checkNode($x,$y-1, $arr);
@@ -280,8 +269,8 @@ class NodeService{
             $new_node->x = $node_way[0];
             $new_node->y = $node_way[1];
             $new_node->links = random_int(1,4);
-            $new_node->{$node_way[3]} = 1;
-            $parent->{$node_way[2]} = 1;
+            $new_node->{$node_way[3]} = $parent->id;
+            
             $new_node->char_id = $char->id;
 
             $type = mt_rand(0,100);
@@ -305,9 +294,10 @@ class NodeService{
             $stats->total++;
             $stats->save();
             $new_node->save();
+            $new_node->fresh();
             $node_content_service->createContent($new_node, $char);
 
-
+            $parent->{$node_way[2]} = $new_node->id;
             // reduce link potential
             $parent->links -= 1;
             $parent->save();

@@ -38,7 +38,8 @@ class ActionsFabric
         'upgrade_skill' => 'App\Http\Actions\Skill\UpgradeSkill',
         'upgrade_stat' => 'App\Http\Actions\Character\UpgradeStat',
         'unlock_skills' => 'App\Http\Actions\Skill\UnlockSkills',
-        'skill' => 'App\Http\Actions\Skill\Skill'
+        'skill' => 'App\Http\Actions\Skill\Skill',
+        'change_stance' => 'App\Http\Actions\Character\ChangeStance'
     ];
 
     static public function createAction($action_name)
