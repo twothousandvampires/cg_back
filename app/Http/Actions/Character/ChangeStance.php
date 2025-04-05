@@ -10,13 +10,13 @@ class ChangeStance extends Action
       
         if($character->stance === 'combat'){
             $character->stance = 'sorcery';
-            $character->physical_damage -= $character->combat_stance_value;
-            $character->magic_damage += $character->sorcery_stance_value;
+            // $character->physical_damage -= $character->combat_stance_value;
+            // $character->magic_damage += $character->sorcery_stance_value;
         }
         else if($character->stance === 'sorcery'){
             $character->stance = 'combat';
-            $character->physical_damage += $character->combat_stance_value;
-            $character->magic_damage -= $character->sorcery_stance_value;
+            // $character->physical_damage += $character->combat_stance_value;
+            // $character->magic_damage -= $character->sorcery_stance_value;
         }
 
         $character->save();
