@@ -28,6 +28,7 @@ class UpgradeSkill extends Action
             $character = Character::find($skill->char_id);
 
             $character[$skill->potential_increase] += $skill->mastery_cost;
+            $character->save();
             
             $this->addData(['char' => $character]);
             return $this->answer;

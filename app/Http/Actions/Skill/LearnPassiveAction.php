@@ -26,7 +26,7 @@ class LearnPassiveAction extends Action
             
             $character->save();
 
-            Passives::where('char_id', $request->char_id)->where('level', 0)->delete();
+            Passives::where('char_id', $character->id)->where('level', 0)->delete();
 
             $this->addData(['char' => $character]);
         }
