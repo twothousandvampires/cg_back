@@ -29,7 +29,6 @@ class LearnSkill extends Action
         $character->save();
         $used = Item::find($request->used_id);
 
-    
         Skills::where('item_id', $skill->item_id)->where('id','!=', $skill->id)->delete();
 
         Skills::whereNotNull('char_id')->where('skill_name', $skill->skill_name)->delete();

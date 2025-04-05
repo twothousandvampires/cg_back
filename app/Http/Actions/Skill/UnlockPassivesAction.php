@@ -20,9 +20,6 @@ class UnlockPassivesAction extends Action
             return $this->answer;
         }
 
-        $character->exp -= $cost;
-        $character->save();
-
         $new = PassivesList::inRandomOrder()
                 ->where('fp_req', '<=', $character->fight_potential)
                 ->where('sp_req', '<=', $character->sorcery_potential)
@@ -31,6 +28,15 @@ class UnlockPassivesAction extends Action
                 ->whereNotIn('name', $passives)
                 ->limit(3)
                 ->get();
+
+
+        if(count($new) === 0){
+            $this->setUnsuccess('nothing to learn');
+            return $this->answer;
+        }
+
+        $character->exp -= $cost;
+        $character->save();
 
         foreach ($new as $item){
             Passives::create([
