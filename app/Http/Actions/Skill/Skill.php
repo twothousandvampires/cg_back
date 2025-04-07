@@ -38,11 +38,10 @@ class Skill extends Action
      
         if($prev_level === 0){
             Skills::where('level', 0)->whereNotNull('char_id')->delete();
-            $character[$skill->potential_increase] += $skill->mastery_cost;
             Skills::whereNull('char_id')->where('skill_name', $skill->skill_name)->delete();
-            
         }
 
+        $character[$skill->potential_increase] += $skill->mastery_cost;
         $character->save();
         
         $this->addData(['char' => $character]);
